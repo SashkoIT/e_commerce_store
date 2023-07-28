@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    {% load custom_filters %}
+    <div style="padding: 100px; margin-left: 35%">
+        <h3 style="margin-left: 5%">Register Form</h3>
+        <form method="post" action="{% url 'register' %}"
+              style="display: flex; flex-direction: column; width: 30%; gap: 10px;">
+            {{ form.username.errors }}
+            {{ form.username | placeholder:'Username' }}
+            {{ form.email.errors }}
+            {{ form.email | placeholder:'Email' }}
+            {{ form.password1.errors }}
+            {{ form.password2.errors }}
+            {{ form.password1 | placeholder:'Password' }}
+            {{ form.password2 | placeholder:'Confirm Password' }}
+            <button style="margin-top: 10px; margin-bottom: 10px; border-radius: 24px; background-color: darkorange; border-color: transparent">
+                Submit
+            </button>
+            {% csrf_token %}
+        </form>
+        <div class="second-option">
+
+            <!-- Link to Login Page -->
+            <p>Have an account? <a href="{% url 'login' %}">Log in</a></p>
+        </div>
+    </div>
+{% endblock %}
