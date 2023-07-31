@@ -1,2 +1,2 @@
-Online Fruit store.
-SoftUni graduating project.
+# Online Fruit Store
+My SoftUni graduating project.
