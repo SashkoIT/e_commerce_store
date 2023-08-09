@@ -14,8 +14,8 @@ class FruitStoreUser(AbstractUser):
 
     email = models.EmailField(unique=True)
     first_name = models.CharField(
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
         validators=(
             MinLengthValidator(NAMES_MIN_LENGTH),
             MaxLengthValidator(NAMES_MAX_LENGTH),
@@ -23,8 +23,8 @@ class FruitStoreUser(AbstractUser):
         )
     )
     last_name = models.CharField(
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
         validators=(
             MinLengthValidator(NAMES_MIN_LENGTH),
             MaxLengthValidator(NAMES_MAX_LENGTH),
@@ -33,14 +33,23 @@ class FruitStoreUser(AbstractUser):
     )
 
     gender = models.CharField(
+        null=True,
+        blank=True,
         choices=CHOICES,
         max_length=11,
     )
 
-    profile_picture = models.URLField()
+    profile_picture = models.URLField(
+        null=True,
+        blank=True,
+    )
 
     @property
     def full_name(self):
-        if self.first_name or self.last_name:
+        if self.first_name and self.last_name:
             return f'{self.first_name} {self.last_name}'
+        elif self.first_name:
+            return f'{self.first_name}'
+        elif self.last_name:
+            return f'{self.last_name}'
         return None

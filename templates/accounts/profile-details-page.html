@@ -1,44 +1,45 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_content %}
-    <!-- Start Profile Details Section -->
-    <div style="margin-left: 45%; padding-top: 150px" class="profile">
+    {% if request.user.pk == object.pk or request.user.is_staff %}
+        <div style="margin-left: 40%;padding-bottom: 50px; padding-top: 100px" class="profile">
 
-        <!-- Start Profile Personal Data Section -->
-        <div class="profile-data">
-            <div class="profile_img">
-                <div class="image">
-                    <h2>Profile Details</h2>
-                    <!-- Profile Image -->
-                    {% if not object.profile_picture %}
-                        <img style="width: 300px" src="{% static '/images/person.png' %}" alt="img8">
-                    {% else %}
-                        <img style="width: 300px; border-radius: 12px" src="{{ object.profile_picture }}" alt="img8">
-                    {% endif %}
+            <!-- Start Profile Personal Data Section -->
+            <div class="profile-data"
+                 style="width: 500px;border: 2px solid black;padding: 30px;display: flex;flex-direction: column;border-radius: 16px">
+                <div class="profile_img" style="text-align: center">
+                    <div class="image">
+                        <h2>
+                            Profile Details
+                            <!-- Link to Edit Profile Page -->
+                            <a style="" href="{% url 'profile-edit' pk=object.pk %}">
+                                <img style="width: 20px;margin-left: 10px" class="edit-img"
+                                     src="/static/images/edit-pen-icon-6.jpg"
+                                     alt="edit button">
+                            </a>
+
+                            <!-- Link to Delete Profile Page -->
+                            <a href="{% url 'profile-delete' pk=object.pk %}">
+                                <img style="width: 20px;" class="bin-img"
+                                     src="/static/images/icon-remove-22.jpg"
+                                     alt="bin button">
+                            </a>
+                        </h2>
+                        <!-- Profile Image -->
+                        {% if not object.profile_picture %}
+                            <img style="width: 300px" src="{% static '/images/person.png' %}" alt="img8">
+                        {% else %}
+                            <img style="width: 300px; border-radius: 12px" src="{{ object.profile_picture }}"
+                                 alt="img8">
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-            <div class="personal">
-                <div style="display: flex; gap: 10px" class="edit">
+                <div class="personal" style="display: flex; flex-direction: column; gap: 5px">
                     <!-- User Username -->
-                    <p style="font-size: 30px"> Username: {{ object.username }}</p>
+                    <p style="font-size: 30px;"> Username: <span style="font-weight: bold">{{ object.username }}</span>
+                    </p>
 
-                    <!-- IF the viewer is the owner of the profile -->
-                    <!-- Link to Edit Profile Page -->
-                    <a style="" href="{% url 'profile-edit' pk=object.pk %}">
-                        <img style="width: 20px; margin-top: 15px; margin-left: 10px" class="edit-img"
-                             src="/static/images/edit-pen-icon-6.jpg"
-                             alt="edit button">
-                    </a>
 
-                    <!-- Link to Delete Profile Page -->
-                    <a href="{% url 'profile-delete' pk=object.pk %}">
-                        <img style="width: 20px; margin-top: 15px;" class="bin-img"
-                             src="/static/images/icon-remove-22.jpg"
-                             alt="bin button">
-                    </a>
-                    <!-- End IF the viewer is the owner of the profile -->
-                </div>
-                <div class="data">
                     <!-- User First and Last Name IF Added -->
 
                     {% if object.full_name is not None %}
@@ -53,12 +54,18 @@
 
                     <!-- User Gender IF Added -->
                     {% if request.user.gender %}
-                        <p style="font-size: 30px" class="gender">Gender: {{ object.gender }}</p>
+                        <p style="font-size: 30px;" class="gender">Gender: {{ object.gender }}</p>
                     {% else %}
-                        <p style="font-size: 30px" class="gender">Gender: Not set</p>
+                        <p style="font-size: 30px;" class="gender">Gender: Not set</p>
                     {% endif %}
                 </div>
             </div>
         </div>
-    </div>
+    {% else %}
+        <div style="padding: 100px; text-align: center;margin-top: 100px;margin-bottom: 100px">
+            <h1>Permission Error</h1>
+            <h3>Cannot render sources due to permission error.</h3>
+        </div>
+    {% endif %}
+
 {% endblock %}

@@ -1,28 +1,33 @@
 {% extends 'base.html' %}
 {% block page_content %}
     {% load custom_filters %}
-    <div style="padding: 100px; margin-left: 35%">
-        <h3 style="margin-left: 5%">Create Product</h3>
-        <form method="post"
-              action="{% url 'edit-product-page' pk=object.pk %}"
-              style="display: flex; flex-direction: column; width: 30%; gap: 10px;">
-            {{ form.name.errors }}
-            {{ form.name | placeholder:'Product Name' }}
-            {{ form.picture.errors }}
-            {{ form.picture | placeholder:'Picture Url' }}
+    {% if request.user.is_staff %}
+        <div style="padding: 100px; margin-left: 35%">
+            <h3 style="margin-left: 5%">Edit Product</h3>
+            <form method="post"
+                  action="{% url 'edit-product-page' pk=object.pk %}"
+                  style="display: flex; flex-direction: column; width: 30%; gap: 10px;">
+                {{ form.name.errors }}
+                {{ form.name | placeholder:'Product Name' }}
+                {{ form.picture.errors }}
+                {{ form.picture | placeholder:'Picture Url' }}
 
-            <div style="display: flex; flex-direction: row; gap: 35%;">
-                {{ form.quantity.errors }}
-                {{ form.quantity | placeholder:'Quantity' }}
-                {{ form.price.errors }}
-                {{ form.price | placeholder:'Price' }}
-            </div>
+                <div style="display: flex; flex-direction: row; gap: 35%;">
+                    {{ form.quantity.errors }}
+                    {{ form.quantity | placeholder:'Quantity' }}
+                    {{ form.price.errors }}
+                    {{ form.price | placeholder:'Price' }}
+                </div>
 
-            {{ form.description | placeholder:'Product Description' }}
-            <button style="margin-top: 10px; margin-bottom: 10px; border-radius: 24px; background-color: darkorange; border-color: transparent">
-                Submit
-            </button>
-            {% csrf_token %}
-        </form>
-    </div>
+                {{ form.description | placeholder:'Product Description' }}
+                <button style="margin-top: 10px; margin-bottom: 10px; border-radius: 24px; background-color: darkorange; border-color: transparent">
+                    Submit
+                </button>
+                {% csrf_token %}
+            </form>
+        </div>
+    {% else %}
+        <div style="padding: 100px; text-align: center;margin-top: 100px;margin-bottom: 100px"><h1>Permission Error</h1>
+            <h3>Cannot render sources due to permission error.</h3></div>
+    {% endif %}
 {% endblock %}

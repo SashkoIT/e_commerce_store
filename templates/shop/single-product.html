@@ -26,32 +26,34 @@
                 </div>
                 <div class="col-md-7">
                     <div class="single-product-content">
-                        <h3>
-                            {{ product.name }}
-                            <a style="" href="{% url 'edit-product-page' pk=product.pk %}">
-                                <img style="width: 20px; margin-top: 15px; margin-left: 10px" class="edit-img"
-                                     src="/static/images/edit-pen-icon-6.jpg"
-                                     alt="edit button">
-                            </a>
+                        {% if request.user.is_staff %}
+                            <h3>
+                                {{ product.name }}
+                                <a style="" href="{% url 'edit-product-page' pk=product.pk %}">
+                                    <img style="width: 20px; margin-top: 15px; margin-left: 10px" class="edit-img"
+                                         src="/static/images/edit-pen-icon-6.jpg"
+                                         alt="edit button">
+                                </a>
 
-                            <!-- Link to Delete Profile Page -->
-                            <a href="{% url 'delete-product-page' pk=product.pk %}">
-                                <img style="width: 20px; margin-top: 15px;" class="bin-img"
-                                     src="/static/images/icon-remove-22.jpg"
-                                     alt="bin button">
-                            </a>
-                        </h3>
+                                <a href="{% url 'delete-product-page' pk=product.pk %}">
+                                    <img style="width: 20px; margin-top: 15px;" class="bin-img"
+                                         src="/static/images/icon-remove-22.jpg"
+                                         alt="bin button">
+                                </a>
+                            </h3>
+                        {% endif %}
                         <p class="single-product-pricing">${{ product.price }} <span>Per Kg</span></p>
                         <p><span style="font-weight: bold">Product Description: </span>{{ description }}</p>
                         <div class="single-product-form">
                             <form action="../common/index.html">
-{#                                <input type="number" placeholder="0">#}
+                                {#                                <input type="number" placeholder="0">#}
                             </form>
                             <div>
                                 <a href="{% url 'add-to-cart-page' product_id=product.pk %}" class="cart-btn"><i
-                                    class="fas fa-shopping-cart"></i> Add to
-                                Cart</a>
-                                <span style="margin-left: 10px">Currently in stock: <span style="font-weight: bold; margin-left: 10px">{{ product.quantity }}KG</span></span>
+                                        class="fas fa-shopping-cart"></i> Add to
+                                    Cart</a>
+                                <span style="margin-left: 10px">Currently in stock: <span
+                                        style="font-weight: bold; margin-left: 10px">{{ product.quantity }}KG</span></span>
                             </div>
                             <p><strong>Categories: </strong>Fruits, Organic</p>
                             {#                        </div>#}

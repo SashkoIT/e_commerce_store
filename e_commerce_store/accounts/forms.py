@@ -8,12 +8,6 @@ class FruitStoreUserUserCreateForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = FruitStoreUser
         fields = ('username', 'email')
-        # widgets = {
-        #     'username': forms.TextInput(attrs={'placeholder': 'Username2'}),
-        #     'email': forms.TextInput(attrs={'placeholder': 'Email'}),
-        #     'password1': forms.PasswordInput(attrs={'placeholder': 'Password'}),
-        #     'password2': forms.PasswordInput(attrs={'placeholder': 'Repeat Password'}),
-        # }
 
 
 class LoginForm(AuthenticationForm):
