@@ -16,16 +16,23 @@ class LoginForm(AuthenticationForm):
         strip=False,
         widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'placeholder': 'Password'}),
     )
+    error_messages = {
+        'invalid_login': "Please enter a correct username and password."
+    }
 
 
 class FruitStoreUserEditForm(forms.ModelForm):
     class Meta:
         model = FruitStoreUser
-        fields = ('username', 'first_name', 'last_name', 'email', 'gender', 'profile_picture',)
+        fields = ('username', 'first_name', 'last_name', 'email', 'gender', 'profile_picture', 'phone_number',)
         labels = {
             'username': 'Username',
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'email': 'Email',
             'gender': 'Gender',
+            'phone_number': 'Phone Number',
+        }
+        widgets = {
+            'phone_number': forms.TextInput()
         }

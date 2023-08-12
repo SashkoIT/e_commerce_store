@@ -13,14 +13,13 @@
             {{ form.password2.errors }}
             {{ form.password1 | placeholder:'Password' }}
             {{ form.password2 | placeholder:'Confirm Password' }}
-            <button style="margin-top: 10px; margin-bottom: 10px; border-radius: 24px; background-color: darkorange; border-color: transparent">
+            <button style="margin-top: 10px; margin-bottom: 10px; border-radius: 24px; background-color: darkorange; border-color: transparent; color: white">
                 Submit
             </button>
             {% csrf_token %}
         </form>
         <div class="second-option">
 
-            <!-- Link to Login Page -->
             <p>Have an account? <a href="{% url 'login' %}">Log in</a></p>
         </div>
     </div>

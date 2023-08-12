@@ -1,5 +1,6 @@
 from django.db import models
 
+from e_commerce_store.accounts.validators import letters_only_validator
 from e_commerce_store.cart.models import Cart
 
 
@@ -10,6 +11,7 @@ class Product(models.Model):
         max_length=10,
         null=False,
         blank=False,
+        validators=(letters_only_validator,)
     )
     picture = models.URLField(
         null=False,

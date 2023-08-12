@@ -5,4 +5,5 @@ urlpatterns = [
     path('', landing_page, name='landing-page'),
     path('about/', about_page, name='about-page'),
     path('news/', news_page, name='news-page'),
+    path('contact/', ContactForm.as_view(), name='contact-form-page'),
 ]

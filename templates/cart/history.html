@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
 {% block page_content %}
-    {% if orders %}
-        <h1 style="padding-top: 100px; margin-left: 35%">Completed Orders</h1>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center">
-        {% for order in orders %}
-            <div style="padding: 30px; display: flex;gap: 2px; flex-direction: column; border: 1px solid black; border-radius: 12px; margin: 50px;">
-                <h2>Order Info</h2>
-                <h3 style="">Order Number: {{ order.pk }}</h3>
-                <h3 style="">Created on: {{ order.date }}</h3>
-                <h3 style="">Name: {{ order.first_name }} {{ order.last_name }}</h3>
-                <h3 style="">Phone: {{ order.phone }}</h3>
-                <h3 style="">Shipping Address: {{ order.address }}</h3>
-            </div>
-        {% endfor %}
-    {% else %}
-        <h1 style="padding: 100px; margin-top: 120px;margin-bottom: 120px;margin-left: 30%">No
-            orders made yet.</h1>
-    {% endif %}
-</div>
+    <h1 style="padding-top: 150px; padding-bottom: 100px; margin-left: 35%">Completed Orders</h1>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center">
+        <table style="width: 1000px; margin-bottom: 50px; margin-top: 30px">
+            <tr style="display: flex; gap: 75px; border: 1px solid gray">
+                <th style="padding: 10px; margin-left: 5px">ID</th>
+                <th style="padding: 10px; margin-left: 20px">Order Date</th>
+                <th style="padding: 10px; margin-left: 10px">Recipient Name</th>
+                <th style="padding: 10px; margin-left: 5px">Phone Number</th>
+                <th style="padding: 10px; margin-left: 5px">Shipping Address</th>
+            </tr>
+            {% for order in orders %}
+                <tr style="padding: 8px; display: flex; gap: 40px; border: 1px solid gray">
+                    <td style="width: 10%; margin-left: 10px">{{ order.pk }}</td>
+                    <td style="width: 20%; margin-left: 10px">{{ order.date }}</td>
+                    <td style="width: 20%; margin-left: 5px">{{ order.first_name }} {{ order.last_name }}</td>
+                    <td style="width: 20%; margin-left: 5px">{{ order.phone }}</td>
+                    <td style="width: 30%; margin-left: 10px">{{ order.address }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}

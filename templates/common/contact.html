@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    {% load custom_filters %}
+    <!-- contact form -->
+    <div class="contact-from-section mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <div class="form-title">
+                        <h2>Have you got any question?</h2>
+                    </div>
+                    <div id="form_status"></div>
+                    <div class="contact-form">
+                        <form method="post" action="{% url 'contact-form-page' %}">
+                            {{ form.name.errors }}
+                            {{ form.email.errors }}
+                            <p>
+                                {{ form.name | placeholder:'Name' }}
+                                {{ form.email | placeholder:'Email' }}
+                            </p>
+                            {{ form.phone.errors }}
+                            {{ form.subject.errors }}
+                            <p>
+                                {{ form.phone | placeholder:'Phone' }}
+                                {{ form.subject | placeholder:'Subject' }}
+                            </p>
+                            <p>
+                                {{ form.message.errors }}
+                                {{ form.message | placeholder:'Message' }}
+                            </p>
+                            <input type="hidden" name="token" value="FsWga4&@f6aw"/>
+                            <p><input type="submit" value="Submit"></p>
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-form-wrap">
+                        <div class="contact-form-box">
+                            <h4><i class="fas fa-map"></i> Shop Address</h4>
+                            <p>Sofia, G. M. Dimitrov 27<br>Bulgaria</p>
+                        </div>
+                        <div class="contact-form-box">
+                            <h4><i class="far fa-clock"></i> Shop Hours</h4>
+                            <p>MON - FRIDAY: 8 to 9 PM <br> SAT - SUN: 10 to 8 PM </p>
+                        </div>
+                        <div class="contact-form-box">
+                            <h4><i class="fas fa-address-book"></i> Contact</h4>
+                            <p>Phone: +359 887862045 <br> Email: office@fruity-bg.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end contact form -->
+
+{% endblock %}

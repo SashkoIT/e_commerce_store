@@ -31,7 +31,7 @@ def single_product_page(request, pk):
 
 
 class CreateProduct(views.CreateView, LoginRequiredMixin):
-    template_name = 'shop/create-product.html'
+    template_name = 'shop/add-product.html'
     form_class = CreateFruitForm
     success_url = reverse_lazy('shop-page')
 

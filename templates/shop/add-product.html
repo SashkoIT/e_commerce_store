@@ -3,7 +3,7 @@
     {% load custom_filters %}
     {% if request.user.is_staff %}
         <div style="padding: 100px; margin-left: 35%">
-            <h3 style="margin-left: 5%">Create Product</h3>
+            <h3 style="margin-left: 6.5%; color: darkorange">Add Product</h3>
             <form method="post"
                   action="{% url 'create-product-page' %}"
                   style="display: flex; flex-direction: column; width: 30%; gap: 10px;">
@@ -18,9 +18,9 @@
                     {{ form.price.errors }}
                     {{ form.price | placeholder:'Price' }}
                 </div>
-
+                {{ form.description.errors }}
                 {{ form.description | placeholder:'Product Description' }}
-                <button style="margin-top: 10px; margin-bottom: 10px; border-radius: 24px; background-color: darkorange; border-color: transparent">
+                <button style="margin-top: 10px;color: white; margin-bottom: 10px; border-radius: 24px; background-color: darkorange; border-color: transparent; width: 50%; margin-left: 25%">
                     Submit
                 </button>
                 {% csrf_token %}

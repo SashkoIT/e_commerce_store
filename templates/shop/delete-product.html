@@ -7,14 +7,11 @@
             </h1>
             <form method="post" action="{% url 'delete-product-page' pk=object.pk %}">
                 <div class="sure-buttons">
-                    <!-- Yes (Delete Profile) Button -->
                     <button style="">Yes</button>
-                    <!-- Go Back Button -->
                     <a class="edit-btn" href="javascript:history.back()">Go Back</a>
                 </div>
                 {% csrf_token %}
             </form>
-            {#        <img src="{% static 'images/are_you_sure_cat.gif' %}" alt="are you sure cat git">#}
         </div>
     {% else %}
         <div style="padding: 100px; text-align: center;margin-top: 100px;margin-bottom: 100px"><h1>Permission Error</h1>

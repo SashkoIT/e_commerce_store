@@ -1,0 +1,24 @@
+@media screen and (max-width: 1200px) {
+    nav.main-menu ul div {
+        margin-left: 10% !important;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .main-menu {
+        display: block;
+    }
+
+    nav.main-menu ul div {
+        margin-left: 0 !important;
+        margin-right: 100px;
+    }
+
+    .container, .container-md, .container-sm {
+        max-width: 720px;
+    }
+    .row {
+        margin-right: 150px;
+        flex-direction: column;
+    }
+}

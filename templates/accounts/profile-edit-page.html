@@ -4,7 +4,7 @@
     {% if request.user.pk == object.pk or request.user.is_staff %}
         <div style="padding: 100px; margin-left: 35%; width: 70%;">
 
-            <h3 style="margin-left: 8%">Edit Profile</h3>
+            <h3 style="margin-left: 8%; color: darkorange">Edit Profile</h3>
             <form method="post" action="{% url 'profile-edit' pk=object.pk %}"
                   style="display: flex; flex-direction: column; width: 30%; gap: 10px;">
                 {{ form.username.errors }}
@@ -18,7 +18,9 @@
                 {{ form.gender | placeholder:'Gender' }}
                 {{ form.profile_picture.errors }}
                 {{ form.profile_picture | placeholder:'Picture URL' }}
-                <button style="margin-top: 10px; margin-bottom: 10px; border-radius: 24px; background-color: darkorange; border-color: transparent">
+                {{ form.phone_number.errors }}
+                {{ form.phone_number | placeholder:'Phone Number' }}
+                <button style="margin-top: 10px; margin-bottom: 10px; border-radius: 24px; background-color: darkorange; color: white; border-color: transparent">
                     Submit
                 </button>
                 {% csrf_token %}
